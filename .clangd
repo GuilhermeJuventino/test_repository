@@ -1,0 +1,7 @@
+CompileFlags:
+  Remove: [-mthumb-interwork, -mno-thumb, -Wunknown-argument, -xc++, -Wall, -Wfatal-errors, -fstack-usage, -march=*, -mabi=*, -mtune=arm946e-s]
+  Add: [-I/opt/devkitpro/devkitARM/arm-none-eabi/include]
+  Compiler: gcc
+
+Diagnostics:
+  Suppress: unknown-argument

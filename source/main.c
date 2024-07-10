@@ -1,133 +1,128 @@
-#include <stdio.h>
-#include <nds.h>
 #include <filesystem.h>
+#include <nds.h>
 #include <nf_lib.h>
+#include <stdio.h>
 
 #include "player/player.h"
 
 Player player;
-//player = create_player(60, 60);
 
-int main(int argc, char **argv)
-{
-    // Prepare a NitroFS initialization screen
-    NF_Set2D(0, 0);
-    NF_Set2D(1, 0);
-    consoleDemoInit();
-    printf("\nNitro FS init. Please Wait.\n\n");
-    swiWaitForVBlank();
+int main(int argc, char **argv) {
+  // Prepare a NitroFS initialization screen
+  NF_Set2D(0, 0);
+  NF_Set2D(1, 0);
+  consoleDemoInit();
+  printf("\nNitro FS init. Please Wait.\n\n");
+  swiWaitForVBlank();
 
-    // Initialize NitroFS and set it as root folder of the file system
-    nitroFSInit(NULL);
-    NF_SetRootFolder("NITROFS");
+  // Initialize NitroFS and set it as root folder of the file system
+  nitroFSInit(NULL);
+  NF_SetRootFolder("NITROFS");
 
-    // Initialize 2D engine on both screens in mode 0
-    NF_Set2D(0, 0);
-    NF_Set2D(1, 0);
+  // Initialize 2D engine on both screens in mode 0
+  NF_Set2D(0, 0);
+  NF_Set2D(1, 0);
 
-    // Initializing tiled backgrounds system
-    NF_InitTiledBgBuffers();
-    NF_InitTiledBgSys(0);
-    NF_InitTiledBgSys(1);
-	
-    // Initializing sprite buffers
-    NF_InitSpriteBuffers();
-    NF_InitSpriteSys(0);
-    NF_InitSpriteSys(1);
+  // Initializing tiled backgrounds system
+  NF_InitTiledBgBuffers();
+  NF_InitTiledBgSys(0);
+  NF_InitTiledBgSys(1);
 
-    // Initializing collision map buffers
-    NF_InitCmapBuffers();
+  // Initializing sprite buffers
+  NF_InitSpriteBuffers();
+  NF_InitSpriteSys(0);
+  NF_InitSpriteSys(1);
 
-    // Initializing text system
-    NF_InitTextSys(1);
+  // Initializing collision map buffers
+  NF_InitCmapBuffers();
 
-    // creating player
-    Player* p_pointer = &player;
+  // Initializing text system
+  NF_InitTextSys(1);
 
-    create_player(p_pointer, 60, 60);
+  // creating player
+  Player *p_pointer = &player;
 
-    // Load sprite files from NitroFS
-    NF_LoadSpriteGfx("sprite/DSSprite", 0, player.width, player.height);
-    NF_LoadSpritePal("sprite/DSSprite", 0);
+  create_player(p_pointer, 60, 60);
 
-    // Load tiled background
-    NF_LoadTiledBg("sprite/DSTileset", "Tilemap", 256, 256);
+  // Load sprite files from NitroFS
+  NF_LoadSpriteGfx("sprite/DSSprite", 0, player.width, player.height);
+  NF_LoadSpritePal("sprite/DSSprite", 0);
 
-    NF_LoadTextFont("fnt/default", "normal", 256, 256, 0);
-    //NF_SetTextColor(0, 0, 0);
+  // Load tiled background
+  NF_LoadTiledBg("sprite/DSTileset", "Tilemap", 256, 256);
 
-    // Load collision map
-    NF_LoadCollisionMap("maps/DSCmap", 0, 256, 256);
+  NF_LoadTextFont("fnt/default", "normal", 256, 256, 0);
+  // NF_SetTextColor(0, 0, 0);
 
-    // Create top screen tiled background
-    NF_CreateTiledBg(0, 3, "Tilemap");
+  // Load collision map
+  NF_LoadCollisionMap("maps/DSCmap", 0, 256, 256);
 
-    NF_CreateTextLayer(1, 2, 0, "normal");
+  // Create top screen tiled background
+  NF_CreateTiledBg(0, 3, "Tilemap");
 
-    // Transfer character sprites to VRAM
-    NF_VramSpriteGfx(0, 0, 0, false);
-    NF_VramSpritePal(0, 0, 0);
+  NF_CreateTextLayer(1, 2, 0, "normal");
 
-    // Setup sprite
-    //s16 sprite_x = 60;
-    //s16 sprite_y = 60;
-    
-    NF_SetTextColor(1, 2, 15);
+  // Transfer character sprites to VRAM
+  NF_VramSpriteGfx(0, 0, 0, false);
+  NF_VramSpritePal(0, 0, 0);
 
-    // Spawn sprite
-    NF_CreateSprite(0, 0, 0, 0, player.x, player.y);
+  NF_SetTextColor(1, 2, 0);
 
-    // Text buffer
-    char  MyText[32];
+  // Spawn sprite
+  NF_CreateSprite(0, 0, 0, 0, player.x, player.y);
 
-    while (1)
-    {
-        scanKeys();
-        u8 keys = keysHeld();
+  // Text buffer
+  char MyText[32];
 
-        if (keys & KEY_UP)
-        {
-          move_player(p_pointer, 0, -1);
-        } else if (keys & KEY_DOWN)
-        {
-          move_player(p_pointer, 0, 1);
-        }
+  while (1) {
+    scanKeys();
+    u8 keys = keysHeld();
 
-        if (keys & KEY_LEFT)
-        {
-          move_player(p_pointer, -1, 0);
-        } else if (keys & KEY_RIGHT)
-        {
-          move_player(p_pointer, 1, 0);
-        }
-
-        switch(NF_GetTile(0, player.x, player.y))
-        {
-          case 0:
-            sprintf(MyText, "Collided with tile 0");
-            break;
-          case 1:
-            sprintf(MyText, "Collided with tile 1");
-            break;
-        }
-        NF_WriteText(1, 2, 5, 5, MyText);
-        NF_MoveSprite(0, 0, player.x, player.y);
-
-        NF_UpdateTextLayers();
-
-	      // Update OAM array
-	      NF_SpriteOamSet(0);
-	      NF_SpriteOamSet(1);
-
-        // Wait for the screen refresh
-        swiWaitForVBlank();
-
-	      // Update OAM
-	      oamUpdate(&oamMain);
-	      oamUpdate(&oamSub);
+    if (keys & KEY_UP) {
+      move_player(p_pointer, 0, -1);
+    } else if (keys & KEY_DOWN) {
+      move_player(p_pointer, 0, 1);
     }
 
-    // If this is reached, the program will return to the loader if the loader
-    // supports it.
-    return 0;
+    if (keys & KEY_LEFT) {
+      move_player(p_pointer, -1, 0);
+    } else if (keys & KEY_RIGHT) {
+      move_player(p_pointer, 1, 0);
+    }
+
+    // u32 tile_id = NF_GetTile(0, player.x, player.y);
+    // sprintf(MyText, "%li", tile_id);
+
+    switch (NF_GetTile(0, player.x, player.y)) {
+    case 4:
+      sprintf(MyText, "Collided with tile 4");
+      break;
+    case 5:
+      sprintf(MyText, "Collided with tile 5");
+      break;
+    case 3:
+      sprintf(MyText, "Collided with tile 3");
+      break;
+    }
+
+    NF_WriteText(1, 2, 5, 5, MyText);
+    NF_MoveSprite(0, 0, player.x, player.y);
+
+    NF_UpdateTextLayers();
+
+    // Update OAM array
+    NF_SpriteOamSet(0);
+    NF_SpriteOamSet(1);
+
+    // Wait for the screen refresh
+    swiWaitForVBlank();
+
+    // Update OAM
+    oamUpdate(&oamMain);
+    oamUpdate(&oamSub);
+  }
+
+  // If this is reached, the program will return to the loader if the loader
+  // supports it.
+  return 0;
 }

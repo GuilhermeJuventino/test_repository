@@ -1,4 +1,5 @@
 main.o: /home/guilhermej14/projetos/DSTest/test_project/source/main.c \
+ /opt/devkitpro/libnds/include/filesystem.h \
  /opt/devkitpro/libnds/include/nds.h \
  /opt/devkitpro/libnds/include/nds/libversion.h \
  /opt/devkitpro/libnds/include/nds/ndstypes.h \
@@ -59,7 +60,6 @@ main.o: /home/guilhermej14/projetos/DSTest/test_project/source/main.c \
  /opt/devkitpro/libnds/include/nds/arm9/video.h \
  /opt/devkitpro/libnds/include/nds/arm9/videoGL.h \
  /opt/devkitpro/libnds/include/nds/arm9/nand.h \
- /opt/devkitpro/libnds/include/filesystem.h \
  /opt/devkitpro/nflib/include/nf_lib.h \
  /opt/devkitpro/nflib/include/nf_2d.h \
  /opt/devkitpro/nflib/include/nf_sprite256.h \
@@ -78,6 +78,7 @@ main.o: /home/guilhermej14/projetos/DSTest/test_project/source/main.c \
  /opt/devkitpro/nflib/include/nf_text.h \
  /opt/devkitpro/nflib/include/nf_tiledbg.h \
  /home/guilhermej14/projetos/DSTest/test_project/source/player/player.h
+/opt/devkitpro/libnds/include/filesystem.h:
 /opt/devkitpro/libnds/include/nds.h:
 /opt/devkitpro/libnds/include/nds/libversion.h:
 /opt/devkitpro/libnds/include/nds/ndstypes.h:
@@ -138,7 +139,6 @@ main.o: /home/guilhermej14/projetos/DSTest/test_project/source/main.c \
 /opt/devkitpro/libnds/include/nds/arm9/video.h:
 /opt/devkitpro/libnds/include/nds/arm9/videoGL.h:
 /opt/devkitpro/libnds/include/nds/arm9/nand.h:
-/opt/devkitpro/libnds/include/filesystem.h:
 /opt/devkitpro/nflib/include/nf_lib.h:
 /opt/devkitpro/nflib/include/nf_2d.h:
 /opt/devkitpro/nflib/include/nf_sprite256.h:

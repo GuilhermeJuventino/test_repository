@@ -1,0 +1,54 @@
+[
+  {
+    "arguments": [
+      "/opt/devkitpro/devkitARM/bin/arm-none-eabi-gcc",
+      "-g",
+      "-Wall",
+      "-O3",
+      "-marm",
+      "-mthumb-interwork",
+      "-march=armv5te",
+      "-mtune=arm946e-s",
+      "-I/opt/devkitpro/libnds/include",
+      "-I/opt/devkitpro/portlibs/nds/include",
+      "-I/opt/devkitpro/portlibs/armv5te/include",
+      "-I/opt/devkitpro/portlibs/armv4t/include",
+      "-I/opt/devkitpro/nflib/include",
+      "-I/home/guilhermej14/projetos/DSTest/test_project/build",
+      "-DARM9",
+      "-c",
+      "-o",
+      "main.o",
+      "/home/guilhermej14/projetos/DSTest/test_project/source/main.c"
+    ],
+    "directory": "/home/guilhermej14/projetos/DSTest/test_project/build",
+    "file": "/home/guilhermej14/projetos/DSTest/test_project/source/main.c",
+    "output": "/home/guilhermej14/projetos/DSTest/test_project/build/main.o"
+  },
+  {
+    "arguments": [
+      "/opt/devkitpro/devkitARM/bin/arm-none-eabi-gcc",
+      "-g",
+      "-Wall",
+      "-O3",
+      "-marm",
+      "-mthumb-interwork",
+      "-march=armv5te",
+      "-mtune=arm946e-s",
+      "-I/opt/devkitpro/libnds/include",
+      "-I/opt/devkitpro/portlibs/nds/include",
+      "-I/opt/devkitpro/portlibs/armv5te/include",
+      "-I/opt/devkitpro/portlibs/armv4t/include",
+      "-I/opt/devkitpro/nflib/include",
+      "-I/home/guilhermej14/projetos/DSTest/test_project/build",
+      "-DARM9",
+      "-c",
+      "-o",
+      "player.o",
+      "/home/guilhermej14/projetos/DSTest/test_project/source/player/player.c"
+    ],
+    "directory": "/home/guilhermej14/projetos/DSTest/test_project/build",
+    "file": "/home/guilhermej14/projetos/DSTest/test_project/source/player/player.c",
+    "output": "/home/guilhermej14/projetos/DSTest/test_project/build/player.o"
+  }
+]
