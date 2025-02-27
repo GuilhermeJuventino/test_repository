@@ -15,4 +15,8 @@ void create_player(Player *player, int x, int y) {
 void move_player(Player *player, int x, int y) {
   player->x += x;
   player->y += y;
+  player->left = player->x;
+  player->right = player->x + player->width;
+  player->top = player->y;
+  player->bottom = player->y + player->height;
 }

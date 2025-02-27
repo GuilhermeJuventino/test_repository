@@ -93,7 +93,8 @@ int main(int argc, char **argv) {
     // u32 tile_id = NF_GetTile(0, player.x, player.y);
     // sprintf(MyText, "%li", tile_id);
 
-    switch (NF_GetTile(0, player.x, player.y)) {
+    switch (NF_GetTile(0, player.x + player.right / player.width,
+                       player.y + player.bottom / player.height)) {
     case 4:
       sprintf(MyText, "Collided with tile 4");
       break;

@@ -1,54 +1,24 @@
 [
   {
     "arguments": [
-      "/opt/devkitpro/devkitARM/bin/arm-none-eabi-gcc",
-      "-g",
+      "/opt/wonderful/toolchain/gcc-arm-none-eabi/bin/arm-none-eabi-gcc",
+      "-std=gnu17",
       "-Wall",
-      "-O3",
-      "-marm",
-      "-mthumb-interwork",
-      "-march=armv5te",
-      "-mtune=arm946e-s",
-      "-I/opt/devkitpro/libnds/include",
-      "-I/opt/devkitpro/portlibs/nds/include",
-      "-I/opt/devkitpro/portlibs/armv5te/include",
-      "-I/opt/devkitpro/portlibs/armv4t/include",
-      "-I/opt/devkitpro/nflib/include",
-      "-I/home/guilhermej14/projetos/DSTest/test_project/build",
-      "-DARM9",
+      "-I/opt/blocksds/external/nflib/include",
+      "-I/opt/blocksds/core/libs/dswifi/include",
+      "-I/opt/blocksds/core/libs/libnds/include",
+      "-mthumb",
+      "-O2",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-specs=/opt/blocksds/core/sys/crts/ds_arm9.specs",
       "-c",
       "-o",
-      "main.o",
-      "/home/guilhermej14/projetos/DSTest/test_project/source/main.c"
+      "build/test_repository/source/main.c.o",
+      "source/main.c"
     ],
-    "directory": "/home/guilhermej14/projetos/DSTest/test_project/build",
-    "file": "/home/guilhermej14/projetos/DSTest/test_project/source/main.c",
-    "output": "/home/guilhermej14/projetos/DSTest/test_project/build/main.o"
-  },
-  {
-    "arguments": [
-      "/opt/devkitpro/devkitARM/bin/arm-none-eabi-gcc",
-      "-g",
-      "-Wall",
-      "-O3",
-      "-marm",
-      "-mthumb-interwork",
-      "-march=armv5te",
-      "-mtune=arm946e-s",
-      "-I/opt/devkitpro/libnds/include",
-      "-I/opt/devkitpro/portlibs/nds/include",
-      "-I/opt/devkitpro/portlibs/armv5te/include",
-      "-I/opt/devkitpro/portlibs/armv4t/include",
-      "-I/opt/devkitpro/nflib/include",
-      "-I/home/guilhermej14/projetos/DSTest/test_project/build",
-      "-DARM9",
-      "-c",
-      "-o",
-      "player.o",
-      "/home/guilhermej14/projetos/DSTest/test_project/source/player/player.c"
-    ],
-    "directory": "/home/guilhermej14/projetos/DSTest/test_project/build",
-    "file": "/home/guilhermej14/projetos/DSTest/test_project/source/player/player.c",
-    "output": "/home/guilhermej14/projetos/DSTest/test_project/build/player.o"
+    "directory": "/home/guilhermej14/projetos/test_repository",
+    "file": "/home/guilhermej14/projetos/test_repository/source/main.c",
+    "output": "/home/guilhermej14/projetos/test_repository/build/test_repository/source/main.c.o"
   }
 ]
