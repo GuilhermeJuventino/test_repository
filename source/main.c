@@ -79,6 +79,35 @@ int main(int argc, char **argv) {
     u8 keys = keysHeld();
 
     if (keys & KEY_UP) {
+      if (NF_GetTile(0, player.x, player.y - player.vel) != 5 &&
+          NF_GetTile(0, player.x + 7, player.y - player.vel) != 5) {
+        move_player(p_pointer, 0, -1);
+      }
+    }
+
+    if (keys & KEY_DOWN) {
+      if (NF_GetTile(0, player.x, player.y + 8 + player.vel) != 5 &&
+          NF_GetTile(0, player.x + 7, player.y + 8 + player.vel) != 5) {
+        move_player(p_pointer, 0, 1);
+      }
+    }
+
+    if (keys & KEY_LEFT) {
+      if (NF_GetTile(0, player.x - player.vel, player.y) != 5 &&
+          NF_GetTile(0, player.x - player.vel, player.y + 7) != 5) {
+        move_player(p_pointer, -1, 0);
+      }
+    }
+
+    if (keys & KEY_RIGHT) {
+      if (NF_GetTile(0, player.x + 8 + player.vel, player.y) != 5 &&
+          NF_GetTile(0, player.x + 8 + player.vel, player.y + 7) != 5) {
+        move_player(p_pointer, 1, 0);
+      }
+    }
+
+    /*
+    if (keys & KEY_UP) {
       move_player(p_pointer, 0, -1);
     } else if (keys & KEY_DOWN) {
       move_player(p_pointer, 0, 1);
@@ -89,6 +118,7 @@ int main(int argc, char **argv) {
     } else if (keys & KEY_RIGHT) {
       move_player(p_pointer, 1, 0);
     }
+    */
 
     // u32 tile_id = NF_GetTile(0, player.x, player.y);
     // sprintf(MyText, "%li", tile_id);

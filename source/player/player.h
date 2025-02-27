@@ -4,6 +4,7 @@
 typedef struct Player {
   int x;
   int y;
+  int vel;
   int width;
   int height;
   int left;
